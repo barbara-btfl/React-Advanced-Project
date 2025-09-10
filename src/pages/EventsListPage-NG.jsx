@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Heading,
-  Card,
-  CardBody,
-  CardHeader,
-  CardFooter,
-  Image,
-  Badge,
-  Text,
-} from "@chakra-ui/react";
+import { Heading, Card, Image, Badge } from "@chakra-ui/react";
 import { useLoaderData, Link } from "react-router-dom";
 
 export const loader = async () => {
@@ -39,32 +30,28 @@ export const EventsPage = () => {
 
   return (
     <>
-      <Heading size="md">List of events</Heading>
+      <Heading>List of events</Heading>
       {events.map((event) => {
         const startTime = new Date(event.startTime);
         const endTime = new Date(event.endTime);
 
         return (
-          <Card maxW="sm" key={event.id} className="event">
+          <Card key={event.id} className="event">
             <Link to={`event/${event.id}`}>
-              <CardHeader>
-                <Heading size="sm">{event.title}</Heading>
-              </CardHeader>
-              <CardBody>
-                <Image src={event.image} alt={event.title} />
-                <Text>{event.description}</Text>
-                <Text>{startTime.toLocaleTimeString("en-EN", options)}</Text>
-                <Text>{endTime.toLocaleTimeString("en-EN", options)}</Text>
-              </CardBody>
-              <CardFooter style={{ display: "flex", gap: "0.5rem" }}>
-                {event.categoryIds.map((categoryId) => (
-                  <Badge key={categoryId} variant="outline" colorScheme="green">
-                    {categories.find((cat) => cat.id === categoryId)?.name ||
-                      "Unknown"}
-                  </Badge>
-                ))}
-              </CardFooter>
+              <h2>{event.title}</h2>
             </Link>
+            <Image src={event.image} alt={event.title} />
+            <p>{event.description}</p>
+            <p>{startTime.toLocaleTimeString("en-EN", options)}</p>
+            <p>{endTime.toLocaleTimeString("en-EN", options)}</p>
+            <div style={{ display: "flex", gap: "0.5rem" }}>
+              {event.categoryIds.map((categoryId) => (
+                <Badge key={categoryId} variant="outline" colorScheme="green">
+                  {categories.find((cat) => cat.id === categoryId)?.name ||
+                    "Unknown"}
+                </Badge>
+              ))}
+            </div>
           </Card>
         );
       })}
