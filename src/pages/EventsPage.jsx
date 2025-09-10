@@ -35,6 +35,7 @@ export const EventsPage = () => {
         {events.map((event) => {
           const startTime = new Date(event.startTime);
           const endTime = new Date(event.endTime);
+
           return (
             <div key={event.id} className="event">
               <Link to={`event/${event.id}`}>
@@ -42,11 +43,16 @@ export const EventsPage = () => {
               </Link>
               <Image src={event.image} alt={event.title} />
               <p>{event.description}</p>
-              <p>{startTime.toLocaleTimeString("nl-NL", options)}</p>
-              <p>{endTime.toLocaleTimeString("nl-NL", options)}</p>
-              <Badge variant="outline" colorScheme="green">
-                {categories.find((cat) => cat.id === event.categoryId)?.name}
-              </Badge>
+              <p>{startTime.toLocaleTimeString("en-EN", options)}</p>
+              <p>{endTime.toLocaleTimeString("en-EN", options)}</p>
+              <div style={{ display: "flex", gap: "0.5rem" }}>
+                {event.categoryIds.map((categoryId) => (
+                  <Badge key={categoryId} variant="outline" colorScheme="green">
+                    {categories.find((cat) => cat.id === categoryId)?.name ||
+                      "Unknown"}
+                  </Badge>
+                ))}
+              </div>
             </div>
           );
         })}
