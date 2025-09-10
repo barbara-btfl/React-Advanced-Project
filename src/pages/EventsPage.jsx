@@ -19,11 +19,22 @@ export const EventsPage = () => {
   console.table(events);
   console.table(categories);
 
+  const options = {
+    weekday: "long", // vrijdag
+    year: "numeric", // 2023
+    month: "long", // maart
+    day: "numeric", // 10
+    hour: "2-digit",
+    minute: "2-digit",
+  };
+
   return (
     <>
       <Heading>List of events</Heading>
       <Card className="events-list">
         {events.map((event) => {
+          const startTime = new Date(event.startTime);
+          const endTime = new Date(event.endTime);
           return (
             <div key={event.id} className="event">
               <Link to={`event/${event.id}`}>
@@ -31,8 +42,8 @@ export const EventsPage = () => {
               </Link>
               <Image src={event.image} alt={event.title} />
               <p>{event.description}</p>
-              <p>{event.startTime}</p>
-              <p>{event.endTime}</p>
+              <p>{startTime.toLocaleTimeString("nl-NL", options)}</p>
+              <p>{endTime.toLocaleTimeString("nl-NL", options)}</p>
               <Badge variant="outline" colorScheme="green">
                 {categories.find((cat) => cat.id === event.categoryId)?.name}
               </Badge>
