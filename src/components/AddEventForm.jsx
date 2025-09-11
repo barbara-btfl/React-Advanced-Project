@@ -57,7 +57,7 @@ export const AddEventForm = ({ onSubmit }) => {
           />
         </FormControl>
 
-        {/* Checkboxes om de categorien aan te vinken waar het evenement hij hoort, uit de category variable. */}
+        {/* Checkboxes om de categorien aan te vinken waar het evenement hij hoort, uit de category variable.
         <FormControl mb={3}>
           <FormLabel>Categories</FormLabel>
           <Stack spacing={5} direction="row">
@@ -71,7 +71,7 @@ export const AddEventForm = ({ onSubmit }) => {
               </Checkbox>
             ))}
           </Stack>
-        </FormControl>
+        </FormControl> */}
 
         <Button type="submit" colorScheme="teal">
           Add event
