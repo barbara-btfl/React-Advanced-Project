@@ -30,13 +30,13 @@ export const Navigation = ({ onAddEvent }) => {
         </li>
       </ul>
       <Button colorScheme="teal" onClick={onOpen}>
-        Nieuw Event toevoegen
+        Add event
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Voeg een boek toe</ModalHeader>
+          <ModalHeader>Add your own event</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <AddEventForm onSubmit={handleAddEvent} />

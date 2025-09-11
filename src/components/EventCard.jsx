@@ -52,7 +52,7 @@ export const EventCard = () => {
         <CardFooter>
           <div style={{ display: "flex", gap: "0.5rem" }}>
             {events.categoryIds.map((categoryId) => (
-              <Badge key={categoryId} variant="outline" colorScheme="green">
+              <Badge key={categoryId} variant="outline" colorScheme="teal">
                 {categories.find((cat) => cat.id === categoryId)?.name ||
                   "Unknown"}
               </Badge>

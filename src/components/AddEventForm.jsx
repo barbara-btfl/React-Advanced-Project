@@ -1,41 +1,73 @@
-import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  Textarea,
+  Stack,
+  Checkbox,
+} from "@chakra-ui/react";
 import { useState } from "react";
 
 export const AddEventForm = ({ onSubmit }) => {
   const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ title, author });
+    onSubmit({ title, description, image });
     setTitle("");
-    setAuthor("");
+    setDescription("");
+    setImage;
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <FormControl mb={3}>
-        <FormLabel>Titel</FormLabel>
+        <FormLabel>Title</FormLabel>
         <Input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Voer een titel in"
+          placeholder="Give your event a title"
           isRequired
         />
       </FormControl>
 
       <FormControl mb={3}>
-        <FormLabel>Auteur</FormLabel>
-        <Input
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          placeholder="Voer een auteur in"
+        <FormLabel>Description</FormLabel>
+        <Textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Write event description here"
           isRequired
         />
       </FormControl>
 
+      <FormControl mb={3}>
+        <FormLabel>Image</FormLabel>
+        <Input
+          value={image}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Insert URL of the image"
+          isRequired
+        />
+      </FormControl>
+
+      {/* Checkboxes om de categorien aan te vinken waar het evenement hij hoort, uit de category variable. */}
+      {/* <FormControl mb={3}>
+        <FormLabel>Categories</FormLabel>
+        <Stack spacing={5} direction="row">
+          {categories.map((category) => (
+            <Checkbox key={category.id} value={category.id} colorScheme="teal">
+              {category.name}
+            </Checkbox>
+          ))}
+        </Stack>
+      </FormControl> */}
+
       <Button type="submit" colorScheme="teal">
-        Opslaan
+        Add event
       </Button>
     </form>
   );
