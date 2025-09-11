@@ -6,21 +6,12 @@ import {
   CardFooter,
   Image,
 } from "@chakra-ui/react";
-import { useLoaderData, Link } from "react-router-dom";
-
-export const loader = async () => {
-  const users = await fetch("http://localhost:3000/users");
-  const events = await fetch("http://localhost:3000/events");
-  const categories = await fetch("http://localhost:3000/categories");
-  return {
-    users: await users.json(),
-    events: await events.json(),
-    categories: await categories.json(),
-  };
-};
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { EventContext } from "../EventContext";
 
 export const EventCard = () => {
-  const { users, events, categories } = useLoaderData();
+  const { users, events, categories } = useContext(EventContext);
   console.table(users);
   console.table(events);
   console.table(categories);
@@ -29,10 +20,10 @@ export const EventCard = () => {
   const endTime = new Date(events.endTime);
 
   const options = {
-    weekday: "long", // vrijdag
-    year: "numeric", // 2023
-    month: "long", // maart
-    day: "numeric", // 10
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
     hour: "2-digit",
     minute: "2-digit",
   };

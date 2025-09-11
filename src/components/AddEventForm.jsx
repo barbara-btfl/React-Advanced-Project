@@ -6,7 +6,6 @@ import {
   Textarea,
   Stack,
   Checkbox,
-  Text,
 } from "@chakra-ui/react";
 import { useState, useContext } from "react";
 import { EventContext } from "../EventContext";
@@ -15,10 +14,10 @@ export const AddEventForm = ({ onSubmit }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
-  const { categories } = useContext(EventContext) || {};
-  console.log("Categories in form:", categories); // Debug categories
-  console.table(categories); // Are categories defined?
+  const { categories } = useContext(EventContext);
+  console.table(categories); // Debug log
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,6 +25,17 @@ export const AddEventForm = ({ onSubmit }) => {
     setTitle("");
     setDescription("");
     setImage("");
+    setSelectedCategories([]);
+  };
+
+  const handleCategoryChange = (categoryId) => {
+    setSelectedCategories((prev) => {
+      if (prev.includes(categoryId)) {
+        return prev.filter((id) => id !== categoryId);
+      } else {
+        return [...prev, categoryId];
+      }
+    });
   };
 
   return (
@@ -63,23 +73,17 @@ export const AddEventForm = ({ onSubmit }) => {
       <FormControl mb={3}>
         <FormLabel>Categories</FormLabel>
         <Stack spacing={5} direction="row">
-          {Array.isArray(categories) ? (
-            categories.map((category) => {
-              console.log("Rendering category:", category); // Debug log
-              return (
-                <Checkbox
-                  key={category.id}
-                  value={category.id.toString()}
-                  colorScheme="teal"
-                  onChange={(e) => console.log(e.target.checked, category.name)}
-                >
-                  {category.name}
-                </Checkbox>
-              );
-            })
-          ) : (
-            <Text>No categories available</Text> // Fallback text
-          )}
+          {categories?.map((category) => (
+            <Checkbox
+              key={category.id}
+              value={category.id}
+              isChecked={selectedCategories.includes(category.id)}
+              onChange={() => handleCategoryChange(category.id)}
+              colorScheme="teal"
+            >
+              {category.name}
+            </Checkbox>
+          ))}
         </Stack>
       </FormControl>
 
