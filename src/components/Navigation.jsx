@@ -1,4 +1,4 @@
-import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -11,14 +11,34 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { AddEventForm } from "./AddEventForm";
+import { EventContext } from "../EventContext";
 
-export const Navigation = ({ onAddEvent }) => {
+export const Navigation = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { events, setEvents } = useContext(EventContext);
 
-  const handleAddEvent = (event) => {
-    onAddEvent(event); // geeft boek terug naar parent (bijv. LibraryContext)
-    onClose(); // sluit modal
+  const handleAddEvent = async (newEvent) => {
+    try {
+      const response = await fetch("http://localhost:3000/events", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newEvent),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to add event");
+      }
+
+      const addedEvent = await response.json();
+      setEvents([...events, addedEvent]); // Update events in context
+      onClose(); // Close modal after successful add
+    } catch (error) {
+      console.error("Error adding event:", error);
+    }
   };
+
   return (
     <nav>
       <ul>

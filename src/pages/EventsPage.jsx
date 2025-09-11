@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Heading,
   Card,
@@ -11,18 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useLoaderData, Link } from "react-router-dom";
-import { NewEvent } from "./NewEvent";
-
-export const loader = async () => {
-  const users = await fetch("http://localhost:3000/users");
-  const events = await fetch("http://localhost:3000/events");
-  const categories = await fetch("http://localhost:3000/categories");
-  return {
-    users: await users.json(),
-    events: await events.json(),
-    categories: await categories.json(),
-  };
-};
+import { EventProvider } from "../EventContext";
 
 export const EventsPage = () => {
   const { users, events, categories } = useLoaderData();
@@ -40,8 +28,7 @@ export const EventsPage = () => {
   };
 
   return (
-    <>
-      <NewEvent></NewEvent>
+    <EventProvider>
       <Center flexDirection="column" gap="1rem" padding="1rem">
         <Heading size="md">List of events</Heading>
 
@@ -78,6 +65,6 @@ export const EventsPage = () => {
           );
         })}
       </Center>
-    </>
+    </EventProvider>
   );
 };

@@ -21,13 +21,13 @@ export const NewEvent = ({ onAddEvent }) => {
   return (
     <>
       <Button colorScheme="teal" onClick={onOpen}>
-        Nieuw Event toevoegen
+        Add Event
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Voeg een boek toe</ModalHeader>
+          <ModalHeader>Add Event</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <AddEventForm onSubmit={handleAddEvent} />
