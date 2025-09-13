@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   Button,
+  Stack,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -42,28 +43,32 @@ export const Navigation = () => {
   return (
     <EventProvider>
       <nav>
-        <ul>
-          <li>
-            <Link to="/">Events</Link>
-          </li>
-          <li>
-            <Link to="/event/1">Event</Link>
-          </li>
-        </ul>
-        <Button colorScheme="teal" onClick={onOpen}>
-          Add event
-        </Button>
+        <Stack
+          spacing={5}
+          direction="row"
+          align="center"
+          m={4}
+          justify={"center"}
+        >
+          <Link to="/">Events</Link>
 
-        <Modal isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Add your own event</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <AddEventForm onSubmit={handleAddEvent} />
-            </ModalBody>
-          </ModalContent>
-        </Modal>
+          <Link to="/event/1">Event</Link>
+
+          <Button colorScheme="teal" onClick={onOpen}>
+            Add event
+          </Button>
+
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Add your own event</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <AddEventForm onSubmit={handleAddEvent} />
+              </ModalBody>
+            </ModalContent>
+          </Modal>
+        </Stack>
       </nav>
     </EventProvider>
   );
