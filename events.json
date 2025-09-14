@@ -10,11 +10,11 @@
       "name": "Sophia Collins",
       "image": "https://wincacademy.github.io/webpages/media/article-author.png"
     },
-	{
+    {
       "id": 3,
       "name": "Emily Carter",
       "image": "https://wincacademy.github.io/webpages/media/person9.jpeg"
-	}
+    }
   ],
   "events": [
     {
@@ -122,18 +122,52 @@
       "startTime": "2023-03-16T07:00:00.000Z",
       "endTime": "2023-03-16T09:30:00.000Z"
     },
-	{
+    {
       "id": 9,
       "createdBy": 3,
       "title": "Bowling night",
       "description": "Strike up some fun with friends at the lanes!",
       "image": "https://wincacademy.github.io/webpages/media/pexels-rnnzeravac-9273055.jpg",
-      "categoryIds": [2],
+      "categoryIds": [
+        2
+      ],
       "location": "Downtown Bowling Alley",
       "startTime": "2023-03-19T18:00:00.000Z",
       "endTime": "2023-03-19T21:00:00.000Z"
-	}
-	
+    },
+    {
+      "title": "Herfstwandeling in Scheveningen",
+      "description": "Kleed je warm aan want we gaan een herfstwandeling maken in Scheveningen. Met het geruis van de zee op de achtergrond en de wind in je haren Natuurlijk sluiten we af met warme chocomel.",
+      "image": "https://images.pexels.com/photos/28246323/pexels-photo-28246323.jpeg",
+      "categoryIds": [
+        3
+      ],
+      "startTime": "2025-10-04T10:30:00.000Z",
+      "endTime": "2025-10-04T14:30:00.000Z",
+      "id": 10
+    },
+    {
+      "title": "Strandwandeling in de herfst",
+      "description": "We gaan naar scheveingen.",
+      "image": "https://images.pexels.com/photos/28246323/pexels-photo-28246323.jpeg",
+      "categoryIds": [
+        3
+      ],
+      "startTime": "2025-10-04T09:30:00.000Z",
+      "endTime": "2025-10-04T14:30:00.000Z",
+      "id": 11
+    },
+    {
+      "title": "Scheveningen",
+      "description": "test",
+      "image": "https://images.pexels.com/photos/28246323/pexels-photo-28246323.jpeg",
+      "categoryIds": [
+        3
+      ],
+      "startTime": "2025-10-04T10:40:00.000Z",
+      "endTime": "2025-10-04T14:41:00.000Z",
+      "id": 12
+    }
   ],
   "categories": [
     {

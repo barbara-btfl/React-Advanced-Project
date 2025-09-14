@@ -1,6 +1,13 @@
 import { createContext, useState, useEffect } from "react";
 
-export const EventContext = createContext({});
+export const EventContext = createContext({
+  events: [],
+  users: [],
+  categories: [],
+  setEvents: () => {},
+  setUsers: () => {},
+  setCategories: () => {},
+});
 
 EventContext.displayName = "EventContext";
 

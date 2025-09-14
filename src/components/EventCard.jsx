@@ -1,4 +1,6 @@
 import {
+  Heading,
+  Text,
   Card,
   Badge,
   CardHeader,
@@ -29,28 +31,26 @@ export const EventCard = () => {
   };
 
   return (
-    <Link to={`event/${events.id}`}>
-      <Card key={events.id} className="event">
+    <Card maxW="sm" key={events.id} className="event">
+      <Link to={`event/${events.id}`}>
         <CardHeader>
-          <h2>{events.title}</h2>
+          <Heading size="sm">{events.title}</Heading>
         </CardHeader>
         <CardBody>
           <Image src={events.image} alt={events.title} />
-          <p>{events.description}</p>
-          <p>{startTime.toLocaleTimeString("en-EN", options)}</p>
-          <p>{endTime.toLocaleTimeString("en-EN", options)}</p>
+          <Text>{events.description}</Text>
+          <Text>{startTime.toLocaleTimeString("en-EN", options)}</Text>
+          <Text>{endTime.toLocaleTimeString("en-EN", options)}</Text>
         </CardBody>
-        <CardFooter>
-          <div style={{ display: "flex", gap: "0.5rem" }}>
-            {events.categoryIds.map((categoryId) => (
-              <Badge key={categoryId} variant="outline" colorScheme="teal">
-                {categories.find((cat) => cat.id === categoryId)?.name ||
-                  "Unknown"}
-              </Badge>
-            ))}
-          </div>
+        <CardFooter style={{ display: "flex", gap: "0.5rem" }}>
+          {events.categoryIds.map((categoryId) => (
+            <Badge key={categoryId} variant="outline" colorScheme="green">
+              {categories.find((cat) => cat.id === categoryId)?.name ||
+                "Unknown"}
+            </Badge>
+          ))}
         </CardFooter>
-      </Card>
-    </Link>
+      </Link>
+    </Card>
   );
 };

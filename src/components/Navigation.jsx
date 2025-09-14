@@ -20,6 +20,8 @@ export const Navigation = () => {
 
   const handleAddEvent = async (newEvent) => {
     try {
+      console.log("Current events:", events);
+
       const response = await fetch("http://localhost:3000/events", {
         method: "POST",
         headers: {
@@ -33,8 +35,11 @@ export const Navigation = () => {
       }
 
       const addedEvent = await response.json();
-      setEvents([...events, addedEvent]); // Update events in context
-      onClose(); // Close modal after successful add
+
+      // Make sure events is an array before spreading
+      const currentEvents = Array.isArray(events) ? events : [];
+      setEvents([...currentEvents, addedEvent]);
+      onClose();
     } catch (error) {
       console.error("Error adding event:", error);
     }
