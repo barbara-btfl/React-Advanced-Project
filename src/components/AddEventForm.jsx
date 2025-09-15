@@ -21,7 +21,6 @@ export const AddEventForm = ({ onSubmit }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
 
   const { categories } = useContext(EventContext);
-  console.table(categories); // Debug log
 
   const handleSubmit = (e) => {
     e.preventDefault();
