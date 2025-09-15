@@ -2,18 +2,24 @@ import { useLoaderData } from "react-router-dom";
 import { Input, Box } from "@chakra-ui/react";
 
 export const SearchBox = ({ onSearchChange }) => {
-  const { events } = useLoaderData();
+  const { events, categories } = useLoaderData();
 
   const handleSearch = (event) => {
     const zoekterm = event.target.value.toLowerCase();
 
-    const matchingEvents = events.filter((hit) => {
-      const { title, categoryIds } = hit.events;
+    const matchingEvents = events.filter((event) => {
+      const { title, categoryIds } = event;
 
-      return (
-        title.toLowerCase().includes(zoekterm) ||
-        categoryIds.some((item) => item.toLowerCase().includes(zoekterm))
-      );
+      // Filter op titel
+      const titleMatch = title.toLowerCase().includes(zoekterm);
+
+      // Filter op category namen
+      const categoryMatch = categoryIds?.some((categoryId) => {
+        const category = categories.find((cat) => cat.id === categoryId);
+        return category?.name.toLowerCase().includes(zoekterm);
+      });
+
+      return titleMatch || categoryMatch;
     });
 
     onSearchChange(matchingEvents);
