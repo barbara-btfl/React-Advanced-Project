@@ -28,18 +28,23 @@ export const EventCard = ({ event }) => {
   };
 
   return (
-    <Card maxW="sm" key={event.id} className="event">
-      <Link to={`event/${event.id}`}>
+    <Card height="100%" width="100%" display="flex" flexDirection="column">
+      <Link
+        to={`event/${event.id}`}
+        style={{ height: "100%", display: "flex", flexDirection: "column" }}
+      >
         <CardHeader>
           <Heading size="sm">{event.title}</Heading>
         </CardHeader>
-        <CardBody>
+        <CardBody flex="1">
           <Image src={event.image} alt={event.title} />
           <Text>{event.description}</Text>
           <Text>{startTime.toLocaleTimeString("en-EN", options)}</Text>
           <Text>{endTime.toLocaleTimeString("en-EN", options)}</Text>
         </CardBody>
-        <CardFooter style={{ display: "flex", gap: "0.5rem" }}>
+        <CardFooter
+          style={{ display: "flex", gap: "0.5rem", marginTop: "auto" }}
+        >
           {event.categoryIds?.map((categoryId) => (
             <Badge key={categoryId} variant="outline" colorScheme="green">
               {categories.find((cat) => cat.id === categoryId)?.name ||

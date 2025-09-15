@@ -32,7 +32,7 @@ export const EventsPage = ({ onSelect }) => {
   return (
     <EventProvider>
       <Center>
-        <Box padding={4}>
+        <Box padding={4} maxW="1400px" w="100%">
           {/* Filter the events based on the searchField */}
           {/* Laat elke EventCard verwijzen naar een EventPage met key={label} */}
           <Box padding={4} textAlign="center" mb={8}>
@@ -56,13 +56,27 @@ export const EventsPage = ({ onSelect }) => {
               No events found that match the criteria.
             </Alert>
           ) : (
-            <Wrap spacing="2rem" justify="center">
+            <Wrap spacing="2rem" justify="center" align="stretch">
               {searchField.map((event) => (
-                <WrapItem key={event.title}>
-                  <EventCard
-                    event={event}
-                    onClick={() => onSelect(event.title)}
-                  />
+                <WrapItem
+                  key={event.title}
+                  flex="1"
+                  basis="300px"
+                  maxW={{
+                    base: "100%", // 1 card on mobile
+                    sm: "45%", // 2 cards on small screens
+                    md: "30%", // 3 cards on medium screens
+                    lg: "23%", // 4 cards on large screens
+                    xl: "18%", // 5 cards on extra large screens
+                  }}
+                  minW="300px"
+                >
+                  <Box height="100%" width="100%">
+                    <EventCard
+                      event={event}
+                      onClick={() => onSelect(event.title)}
+                    />
+                  </Box>
                 </WrapItem>
               ))}
             </Wrap>
