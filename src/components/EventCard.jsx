@@ -12,14 +12,11 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { EventContext } from "../EventContext";
 
-export const EventCard = () => {
-  const { users, events, categories } = useContext(EventContext);
-  console.table(users);
-  console.table(events);
-  console.table(categories);
+export const EventCard = ({ event }) => {
+  const { categories } = useContext(EventContext);
 
-  const startTime = new Date(events.startTime);
-  const endTime = new Date(events.endTime);
+  const startTime = new Date(event.startTime);
+  const endTime = new Date(event.endTime);
 
   const options = {
     weekday: "long",
@@ -31,19 +28,19 @@ export const EventCard = () => {
   };
 
   return (
-    <Card maxW="sm" key={events.id} className="event">
-      <Link to={`event/${events.id}`}>
+    <Card maxW="sm" key={event.id} className="event">
+      <Link to={`event/${event.id}`}>
         <CardHeader>
-          <Heading size="sm">{events.title}</Heading>
+          <Heading size="sm">{event.title}</Heading>
         </CardHeader>
         <CardBody>
-          <Image src={events.image} alt={events.title} />
-          <Text>{events.description}</Text>
+          <Image src={event.image} alt={event.title} />
+          <Text>{event.description}</Text>
           <Text>{startTime.toLocaleTimeString("en-EN", options)}</Text>
           <Text>{endTime.toLocaleTimeString("en-EN", options)}</Text>
         </CardBody>
         <CardFooter style={{ display: "flex", gap: "0.5rem" }}>
-          {events.categoryIds.map((categoryId) => (
+          {event.categoryIds?.map((categoryId) => (
             <Badge key={categoryId} variant="outline" colorScheme="green">
               {categories.find((cat) => cat.id === categoryId)?.name ||
                 "Unknown"}

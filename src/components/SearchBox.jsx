@@ -7,8 +7,8 @@ export const SearchBox = ({ onSearchChange }) => {
   const handleSearch = (event) => {
     const zoekterm = event.target.value.toLowerCase();
 
-    const matchingEvents = events.title.filter((event) => {
-      const { title, categoryIds } = event.events;
+    const matchingEvents = events.filter((hit) => {
+      const { title, categoryIds } = hit.events;
 
       return (
         title.toLowerCase().includes(zoekterm) ||

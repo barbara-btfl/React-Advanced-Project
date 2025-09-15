@@ -8,19 +8,11 @@ export const loader = async () => {
     categories: await categories.json(),
   };
 };
-import {
-  Heading,
-  Card,
-  CardBody,
-  CardHeader,
-  CardFooter,
-  Image,
-  Badge,
-  Center,
-  Text,
-} from "@chakra-ui/react";
-import { useLoaderData, Link } from "react-router-dom";
+import { Heading, Center } from "@chakra-ui/react";
+import { useLoaderData } from "react-router-dom";
 import { EventProvider } from "../EventContext";
+import { SearchBox } from "../components/SearchBox";
+import { EventCard } from "../components/EventCard";
 
 export const EventsPage = () => {
   const { users, events, categories } = useLoaderData();
@@ -28,51 +20,20 @@ export const EventsPage = () => {
   console.table(events);
   console.table(categories);
 
-  const options = {
-    weekday: "long", // vrijdag
-    year: "numeric", // 2023
-    month: "long", // maart
-    day: "numeric", // 10
-    hour: "2-digit",
-    minute: "2-digit",
-  };
-
   return (
     <EventProvider>
       <Center flexDirection="column" gap="1rem" padding="1rem">
         <Heading size="md">List of events</Heading>
 
-        {events.map((event) => {
-          const startTime = new Date(event.startTime);
-          const endTime = new Date(event.endTime);
+        <SearchBox
+          onSearchChange={(results) => {
+            setSearchField(results);
+            setHasSearched(true); // markeer dat er gezocht is
+          }}
+        />
 
-          return (
-            <Card maxW="sm" key={event.id} className="event">
-              <Link to={`event/${event.id}`}>
-                <CardHeader>
-                  <Heading size="sm">{event.title}</Heading>
-                </CardHeader>
-                <CardBody>
-                  <Image src={event.image} alt={event.title} />
-                  <Text>{event.description}</Text>
-                  <Text>{startTime.toLocaleTimeString("en-EN", options)}</Text>
-                  <Text>{endTime.toLocaleTimeString("en-EN", options)}</Text>
-                </CardBody>
-                <CardFooter style={{ display: "flex", gap: "0.5rem" }}>
-                  {event.categoryIds.map((categoryId) => (
-                    <Badge
-                      key={categoryId}
-                      variant="outline"
-                      colorScheme="green"
-                    >
-                      {categories.find((cat) => cat.id === categoryId)?.name ||
-                        "Unknown"}
-                    </Badge>
-                  ))}
-                </CardFooter>
-              </Link>
-            </Card>
-          );
+        {events.map((event) => {
+          return <EventCard key={event.id} event={event} />;
         })}
       </Center>
     </EventProvider>
