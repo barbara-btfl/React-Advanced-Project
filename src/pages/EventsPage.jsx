@@ -24,10 +24,7 @@ import { EventCard } from "../components/EventCard";
 import { useState } from "react";
 
 export const EventsPage = ({ onSelect }) => {
-  const { users, events, categories } = useLoaderData();
-  console.table(users);
-  console.table(events);
-  console.table(categories);
+  const { events } = useLoaderData();
 
   const [searchField, setSearchField] = useState(events);
   const [hasSearched, setHasSearched] = useState(false);
@@ -36,8 +33,8 @@ export const EventsPage = ({ onSelect }) => {
     <EventProvider>
       <Center>
         <Box padding={4}>
-          {/* Filter the recipes based on the searchField */}
-          {/* Laat elke receptkaart verwijzen naar een RecipePage met key={label} */}
+          {/* Filter the events based on the searchField */}
+          {/* Laat elke EventCard verwijzen naar een EventPage met key={label} */}
           <Box padding={4} textAlign="center" mb={8}>
             <Heading mb="0.5em">List of Events</Heading>
             <SearchBox
