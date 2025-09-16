@@ -1,11 +1,19 @@
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { EventContext } from "../EventContext";
-import { Heading, Box, Image, Text, Badge, VStack } from "@chakra-ui/react";
+import {
+  Heading,
+  Box,
+  Image,
+  Text,
+  Badge,
+  VStack,
+  HStack,
+} from "@chakra-ui/react";
 
 export const EventPage = () => {
   const { eventId } = useParams();
-  const { events, categories } = useContext(EventContext);
+  const { events, categories, users } = useContext(EventContext);
 
   console.log("eventId from params:", eventId);
   console.log("events from context:", events);
@@ -16,6 +24,7 @@ export const EventPage = () => {
   if (!event) {
     return <Heading>Event not found</Heading>;
   }
+  const creator = users.find((user) => user.id === event.createdBy);
 
   const startTime = new Date(event.startTime);
   const endTime = new Date(event.endTime);
@@ -49,6 +58,21 @@ export const EventPage = () => {
                 "Unknown"}
             </Badge>
           ))}
+        </Box>
+        <Box mt={8} p={4} borderTop="1px" borderColor="gray.200" width="100%">
+          <Heading size="sm" mb={4}>
+            Created by:
+          </Heading>
+          <HStack spacing={4}>
+            <Image
+              src={creator?.image}
+              alt={creator?.name}
+              boxSize="50px"
+              borderRadius="full"
+              objectFit="cover"
+            />
+            <Text>{creator?.name || "Unknown user"}</Text>
+          </HStack>
         </Box>
       </VStack>
     </Box>
