@@ -145,28 +145,6 @@
       "id": 10
     },
     {
-      "title": "Strandwandeling in de herfst",
-      "description": "We gaan naar scheveingen.",
-      "image": "https://images.pexels.com/photos/28246323/pexels-photo-28246323.jpeg",
-      "categoryIds": [
-        3
-      ],
-      "startTime": "2025-10-04T09:30:00.000Z",
-      "endTime": "2025-10-04T14:30:00.000Z",
-      "id": 11
-    },
-    {
-      "title": "Scheveningen",
-      "description": "test",
-      "image": "https://images.pexels.com/photos/28246323/pexels-photo-28246323.jpeg",
-      "categoryIds": [
-        3
-      ],
-      "startTime": "2025-10-04T10:40:00.000Z",
-      "endTime": "2025-10-04T14:41:00.000Z",
-      "id": 12
-    },
-    {
       "title": "Kermis",
       "description": "Test",
       "image": "https://images.pexels.com/photos/12998519/pexels-photo-12998519.jpeg",

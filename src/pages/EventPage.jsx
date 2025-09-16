@@ -32,6 +32,30 @@ export const EventPage = () => {
 
   const event = events.find((e) => e.id === Number(eventId));
 
+  const handleDeleteEvent = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/events/${eventId}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete event");
+      }
+
+      // Handle successful deletion
+      toast({
+        title: "Event deleted",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+
+      navigate("/"); // Navigate back to the main events page
+    } catch (error) {
+      console.error("Error deleting event:", error);
+    }
+  };
+
   const handleEditSubmit = async (updatedEvent) => {
     try {
       const response = await fetch(`http://localhost:3000/events/${eventId}`, {
@@ -99,9 +123,14 @@ export const EventPage = () => {
           ))}
         </Box>
         <Box mt={8} p={4} borderTop="1px" borderColor="gray.200" width="100%">
-          <Button colorScheme="teal" onClick={onOpen}>
-            Edit event
-          </Button>
+          <HStack spacing={4}>
+            <Button colorScheme="teal" onClick={onOpen}>
+              Edit event
+            </Button>
+            <Button colorScheme="gray" onClick={handleDeleteEvent}>
+              Delete event
+            </Button>
+          </HStack>
         </Box>
         <Box mt={8} p={4} borderTop="1px" borderColor="gray.200" width="100%">
           <Heading size="sm" mb={4}>
