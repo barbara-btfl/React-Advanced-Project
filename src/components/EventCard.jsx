@@ -28,7 +28,16 @@ export const EventCard = ({ event }) => {
   };
 
   return (
-    <Card height="100%" width="100%" display="flex" flexDirection="column">
+    <Card
+      height="100%"
+      width="100%"
+      display="flex"
+      flexDirection="column"
+      boxShadow="md"
+      borderWidth="1px"
+      borderRadius="lg"
+      borderColor={"#00aec5"}
+    >
       <Link
         to={`/event/${event.id}`}
         style={{ height: "100%", display: "flex", flexDirection: "column" }}

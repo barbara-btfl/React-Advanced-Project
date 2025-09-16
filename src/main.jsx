@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Root } from "./components/Root";
 import { NewEvent } from "./pages/NewEvent";
 import { loader as eventsLoader } from "./EventContext";
+import "./index.css";
 
 const router = createBrowserRouter([
   {

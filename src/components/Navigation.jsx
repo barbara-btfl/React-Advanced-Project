@@ -69,7 +69,13 @@ export const Navigation = () => {
   };
 
   return (
-    <nav>
+    <nav
+      style={{
+        backgroundColor: "#f8e100",
+        marginTop: "0",
+        padding: "0.5rem",
+      }}
+    >
       <Stack
         spacing={5}
         direction="row"
