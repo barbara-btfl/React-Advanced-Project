@@ -30,7 +30,7 @@ export const EventCard = ({ event }) => {
   return (
     <Card height="100%" width="100%" display="flex" flexDirection="column">
       <Link
-        to={`event/${event.id}`}
+        to={`/event/${event.id}`}
         style={{ height: "100%", display: "flex", flexDirection: "column" }}
       >
         <CardHeader>
