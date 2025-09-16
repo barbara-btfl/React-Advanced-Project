@@ -15,10 +15,6 @@ export const EventPage = () => {
   const { eventId } = useParams();
   const { events, categories, users } = useContext(EventContext);
 
-  console.log("eventId from params:", eventId);
-  console.log("events from context:", events);
-  console.log("looking for event with id:", Number(eventId));
-
   const event = events.find((e) => e.id === Number(eventId));
 
   if (!event) {
