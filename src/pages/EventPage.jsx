@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { EventContext } from "../EventContext";
+import { EditEventForm } from "../components/EditEventForm";
 import {
   Heading,
   Box,
@@ -9,13 +10,55 @@ import {
   Badge,
   VStack,
   HStack,
+  useToast,
+} from "@chakra-ui/react";
+import {
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  useDisclosure,
 } from "@chakra-ui/react";
 
 export const EventPage = () => {
   const { eventId } = useParams();
   const { events, categories, users } = useContext(EventContext);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
+  const navigate = useNavigate();
 
   const event = events.find((e) => e.id === Number(eventId));
+
+  const handleEditSubmit = async (updatedEvent) => {
+    try {
+      const response = await fetch(`http://localhost:3000/events/${eventId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedEvent),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update event");
+      }
+
+      // Handle successful update
+      toast({
+        title: "Event updated",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+
+      navigate(0); // Refresh the page
+    } catch (error) {
+      console.error("Error updating event:", error);
+    }
+  };
 
   if (!event) {
     return <Heading>Event not found</Heading>;
@@ -56,6 +99,11 @@ export const EventPage = () => {
           ))}
         </Box>
         <Box mt={8} p={4} borderTop="1px" borderColor="gray.200" width="100%">
+          <Button colorScheme="teal" onClick={onOpen}>
+            Edit event
+          </Button>
+        </Box>
+        <Box mt={8} p={4} borderTop="1px" borderColor="gray.200" width="100%">
           <Heading size="sm" mb={4}>
             Created by:
           </Heading>
@@ -69,6 +117,17 @@ export const EventPage = () => {
             />
             <Text>{creator?.name || "Unknown user"}</Text>
           </HStack>
+
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Edit {event.title}</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <EditEventForm onSubmit={handleEditSubmit} eventId={eventId} />
+              </ModalBody>
+            </ModalContent>
+          </Modal>
         </Box>
       </VStack>
     </Box>

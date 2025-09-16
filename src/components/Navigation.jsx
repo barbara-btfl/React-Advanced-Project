@@ -79,8 +79,6 @@ export const Navigation = () => {
       >
         <Link to="/">Events</Link>
 
-        <Link to="/event/1">Event</Link>
-
         <Button colorScheme="teal" onClick={onOpen}>
           Add event
         </Button>
