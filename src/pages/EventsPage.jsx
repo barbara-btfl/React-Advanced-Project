@@ -18,9 +18,10 @@ import {
   AlertIcon,
 } from "@chakra-ui/react";
 import { useLoaderData } from "react-router-dom";
-import { SearchBox } from "../components/SearchBox";
+// import { SearchBox } from "../components/SearchBox";
 import { EventCard } from "../components/EventCard";
 import { useState } from "react";
+import { SearchBoxAdv } from "../components/SearchBoxAdv";
 
 export const EventsPage = ({ onSelect }) => {
   const { events } = useLoaderData();
@@ -35,7 +36,7 @@ export const EventsPage = ({ onSelect }) => {
         {/* Laat elke EventCard verwijzen naar een EventPage met key={label} */}
         <Box padding={4} textAlign="center" mb={8}>
           <Heading mb="0.5em">List of Events</Heading>
-          <SearchBox
+          <SearchBoxAdv
             onSearchChange={(results) => {
               setSearchField(results);
               setHasSearched(true); // markeer dat er gezocht is
