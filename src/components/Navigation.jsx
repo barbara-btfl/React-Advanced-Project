@@ -85,7 +85,7 @@ export const Navigation = () => {
       >
         <Link to="/">Events</Link>
 
-        <Button colorScheme="teal" onClick={onOpen}>
+        <Button bgColor="#00aec5" color="white" onClick={onOpen}>
           Add event
         </Button>
 

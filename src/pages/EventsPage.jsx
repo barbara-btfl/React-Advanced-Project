@@ -34,7 +34,13 @@ export const EventsPage = ({ onSelect }) => {
       <Box padding={4} maxW="1400px" w="100%">
         {/* Filter the events based on the searchField */}
         {/* Laat elke EventCard verwijzen naar een EventPage met key={label} */}
-        <Box padding={4} textAlign="center" mb={8}>
+        <Box
+          padding={4}
+          textAlign="center"
+          mb={8}
+          background="whiteAlpha.800"
+          borderRadius="xl"
+        >
           <Heading mb="0.5em">List of Events</Heading>
           <SearchBoxAdv
             onSearchChange={(results) => {
