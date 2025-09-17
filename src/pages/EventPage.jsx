@@ -102,7 +102,14 @@ export const EventPage = () => {
   };
 
   return (
-    <Box maxW="800px" mx="auto" p={4}>
+    <Box
+      maxW="800px"
+      mx="auto"
+      mt={["4", "6", "8"]}
+      p={["4", "6", "8"]}
+      background="whiteAlpha.900"
+      borderRadius="xl"
+    >
       <VStack spacing={4} align="start">
         <Heading>{event.title}</Heading>
         <Image src={event.image} alt={event.title} />
@@ -115,16 +122,16 @@ export const EventPage = () => {
               key={categoryId}
               mr={2}
               variant="outline"
-              colorScheme="green"
+              colorScheme="brand"
             >
               {categories.find((cat) => cat.id === categoryId)?.name ||
                 "Unknown"}
             </Badge>
           ))}
         </Box>
-        <Box mt={8} p={4} borderTop="1px" borderColor="gray.200" width="100%">
+        <Box mt={8} p={4} borderTop="1px" borderColor="cyan.100" width="100%">
           <HStack spacing={4}>
-            <Button colorScheme="teal" onClick={onOpen}>
+            <Button colorScheme="brand" onClick={onOpen}>
               Edit event
             </Button>
             <Button colorScheme="gray" onClick={handleDeleteEvent}>
@@ -132,7 +139,7 @@ export const EventPage = () => {
             </Button>
           </HStack>
         </Box>
-        <Box mt={8} p={4} borderTop="1px" borderColor="gray.200" width="100%">
+        <Box mt={8} p={4} borderTop="1px" borderColor="cyan.100" width="100%">
           <Heading size="sm" mb={4}>
             Created by:
           </Heading>
@@ -149,9 +156,9 @@ export const EventPage = () => {
 
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>Edit {event.title}</ModalHeader>
-              <ModalCloseButton />
+            <ModalContent border={"1px solid"} borderColor="brand.primary">
+              <ModalHeader fontFamily="heading">Edit {event.title}</ModalHeader>
+              <ModalCloseButton color="brand.primary" />
               <ModalBody>
                 <EditEventForm onSubmit={handleEditSubmit} eventId={eventId} />
               </ModalBody>

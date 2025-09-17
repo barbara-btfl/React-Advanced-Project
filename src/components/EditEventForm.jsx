@@ -145,7 +145,7 @@ export const EditEventForm = ({ onSubmit, eventId }) => {
               value={category.id}
               isChecked={selectedCategories.includes(category.id)}
               onChange={() => handleCategoryChange(category.id)}
-              colorScheme="teal"
+              colorScheme="brand"
             >
               {category.name}
             </Checkbox>
@@ -153,7 +153,7 @@ export const EditEventForm = ({ onSubmit, eventId }) => {
         </Stack>
       </FormControl>
 
-      <Button type="submit" colorScheme="teal">
+      <Button type="submit" colorScheme="brand">
         Edit event
       </Button>
       <Button

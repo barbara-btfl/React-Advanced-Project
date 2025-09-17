@@ -88,10 +88,10 @@ export const Navigation = () => {
         <Link to="/">Events</Link>
 
         <Button
-          bgColor="#00aec5"
-          color="white"
+          colorScheme="brand"
           onClick={onOpen}
-          _hover={{ bg: "#007f8f" }}
+          fontWeight="bold"
+          fontFamily="heading"
         >
           Add event
         </Button>
