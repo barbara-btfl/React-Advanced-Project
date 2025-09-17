@@ -37,8 +37,9 @@ export const EventsPage = ({ onSelect }) => {
         <Box
           padding={4}
           textAlign="center"
+          justifyItems="center"
           mb={8}
-          background="whiteAlpha.800"
+          background="whiteAlpha.900"
           borderRadius="xl"
         >
           <Heading mb="0.5em">List of Events</Heading>

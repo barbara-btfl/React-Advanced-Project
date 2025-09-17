@@ -1,6 +1,15 @@
 import { useContext, useState } from "react";
 import { EventContext } from "../EventContext";
-import { Input, Box, Stack, Checkbox, Text } from "@chakra-ui/react";
+import {
+  Input,
+  Box,
+  Stack,
+  Checkbox,
+  Text,
+  InputGroup,
+  InputLeftElement,
+} from "@chakra-ui/react";
+import { SearchIcon } from "@chakra-ui/icons";
 
 export const SearchBoxAdv = ({ onSearchChange }) => {
   const { events, categories } = useContext(EventContext);
@@ -59,15 +68,21 @@ export const SearchBoxAdv = ({ onSearchChange }) => {
     <Stack spacing={4}>
       <Box>
         <Text mb={2}>Search by title:</Text>
-        <Input
-          type="text"
-          variant="filled"
-          maxW="md"
-          size="md"
-          placeholder="Search for events"
-          value={searchText}
-          onChange={handleTitleSearch}
-        />
+        <InputGroup>
+          <InputLeftElement pointerEvents="none">
+            <SearchIcon color="gray.300" />
+          </InputLeftElement>
+          <Input
+            type="text"
+            variant="outline"
+            colorScheme="cyan.500"
+            maxW="md"
+            size="md"
+            placeholder="Search for events"
+            value={searchText}
+            onChange={handleTitleSearch}
+          />
+        </InputGroup>
       </Box>
 
       <Box>
@@ -78,7 +93,7 @@ export const SearchBoxAdv = ({ onSearchChange }) => {
               key={category.id}
               isChecked={selectedCategories.includes(category.id)}
               onChange={() => handleCategoryToggle(category.id)}
-              colorScheme="teal"
+              colorScheme="brand"
             >
               {category.name}
             </Checkbox>
