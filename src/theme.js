@@ -18,8 +18,8 @@ export const customTheme = {
     },
   },
   fonts: {
-    heading: "'Baloo', sans-serif",
-    body: "'Nunito', sans-serif",
+    heading: "'Baloo 2', sans-serif",
+    body: "'Nunito Sans', sans-serif",
   },
   fontSizes: {
     xs: "0.75rem",
