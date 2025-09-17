@@ -61,12 +61,7 @@ export const EventCard = ({ event }) => {
           style={{ display: "flex", gap: "0.5rem", marginTop: "auto" }}
         >
           {event.categoryIds?.map((categoryId) => (
-            <Badge
-              key={categoryId}
-              variant="outline"
-              color="brand.primary"
-              outlineColor="brand.primary"
-            >
+            <Badge key={categoryId} variant="outline" colorScheme="brand">
               {categories.find((cat) => cat.id === categoryId)?.name ||
                 "Unknown"}
             </Badge>

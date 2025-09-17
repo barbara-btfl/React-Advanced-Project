@@ -82,10 +82,17 @@ export const Navigation = () => {
         align="center"
         m={4}
         justify={"center"}
+        fontFamily="heading"
+        fontWeight="bold"
       >
         <Link to="/">Events</Link>
 
-        <Button bgColor="#00aec5" color="white" onClick={onOpen}>
+        <Button
+          bgColor="#00aec5"
+          color="white"
+          onClick={onOpen}
+          _hover={{ bg: "#007f8f" }}
+        >
           Add event
         </Button>
 
