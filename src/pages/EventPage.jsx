@@ -27,6 +27,11 @@ export const EventPage = () => {
   const { eventId } = useParams();
   const { events, categories, users } = useContext(EventContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isDeleteOpen,
+    onOpen: onDeleteOpen,
+    onClose: onDeleteClose,
+  } = useDisclosure();
   const toast = useToast();
   const navigate = useNavigate();
 
@@ -134,7 +139,7 @@ export const EventPage = () => {
             <Button colorScheme="brand" onClick={onOpen}>
               Edit event
             </Button>
-            <Button colorScheme="gray" onClick={handleDeleteEvent}>
+            <Button colorScheme="gray" onClick={onDeleteOpen}>
               Delete event
             </Button>
           </HStack>
@@ -153,6 +158,23 @@ export const EventPage = () => {
             />
             <Text>{creator?.name || "Unknown user"}</Text>
           </HStack>
+
+          <Modal isOpen={isDeleteOpen} onClose={onDeleteClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Confirm Delete</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody pb={6}>
+                Are you sure you want to delete &quot;{event.title}&quot;?
+              </ModalBody>
+              <Box p={4} display="flex" justifyContent="flex-end" gap={4}>
+                <Button onClick={onDeleteClose}>Cancel</Button>
+                <Button colorScheme="red" onClick={handleDeleteEvent}>
+                  Delete
+                </Button>
+              </Box>
+            </ModalContent>
+          </Modal>
 
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
