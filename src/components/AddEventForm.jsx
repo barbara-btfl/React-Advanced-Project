@@ -136,7 +136,7 @@ export const AddEventForm = ({ onSubmit }) => {
               value={category.id}
               isChecked={selectedCategories.includes(category.id)}
               onChange={() => handleCategoryChange(category.id)}
-              colorScheme="teal"
+              colorScheme="brand"
             >
               {category.name}
             </Checkbox>
@@ -144,7 +144,7 @@ export const AddEventForm = ({ onSubmit }) => {
         </Stack>
       </FormControl>
 
-      <Button type="submit" colorScheme="teal">
+      <Button type="submit" colorScheme="brand">
         Add event
       </Button>
     </form>

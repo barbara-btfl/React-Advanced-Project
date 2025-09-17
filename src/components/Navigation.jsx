@@ -98,9 +98,9 @@ export const Navigation = () => {
 
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Add your own event</ModalHeader>
-            <ModalCloseButton />
+          <ModalContent border={"1px solid"} borderColor="brand.primary">
+            <ModalHeader fontFamily="heading">Add your own event</ModalHeader>
+            <ModalCloseButton color="brand.primary" />
             <ModalBody>
               <AddEventForm onSubmit={handleAddEvent} />
             </ModalBody>
