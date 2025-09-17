@@ -43,19 +43,30 @@ export const EventCard = ({ event }) => {
         style={{ height: "100%", display: "flex", flexDirection: "column" }}
       >
         <CardHeader>
-          <Heading size="sm">{event.title}</Heading>
+          <Heading size="md" color="brand.primary">
+            {event.title}
+          </Heading>
         </CardHeader>
         <CardBody flex="1">
-          <Image src={event.image} alt={event.title} />
-          <Text>{event.description}</Text>
-          <Text>{startTime.toLocaleTimeString("en-EN", options)}</Text>
-          <Text>{endTime.toLocaleTimeString("en-EN", options)}</Text>
+          <Image mb={4} src={event.image} alt={event.title} />
+          <Text color="brand.text">{event.description}</Text>
+          <Text color="brand.text" fontSize={"sm"} mt={4} fontWeight="bold">
+            {startTime.toLocaleTimeString("en-EN", options)}
+          </Text>
+          <Text color="brand.text" fontSize={"sm"} fontWeight="bold">
+            {endTime.toLocaleTimeString("en-EN", options)}
+          </Text>
         </CardBody>
         <CardFooter
           style={{ display: "flex", gap: "0.5rem", marginTop: "auto" }}
         >
           {event.categoryIds?.map((categoryId) => (
-            <Badge key={categoryId} variant="outline" colorScheme="green">
+            <Badge
+              key={categoryId}
+              variant="outline"
+              color="brand.primary"
+              outlineColor="brand.primary"
+            >
               {categories.find((cat) => cat.id === categoryId)?.name ||
                 "Unknown"}
             </Badge>
